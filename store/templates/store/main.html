@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vroom </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static '/style.CSS' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+  <style>
+
+
+  </style>
+</head>
+<body>
+<header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link"> Hello, {{ user.username }} </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="accounts/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="accounts/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="accounts/register">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+          </div>
+        </nav>
+</header>
+<section class="banner">
+    <div class="home_search">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="home_search_container">
+                        <div class="home_search_title"><h3>Search for your trip</h3></div><br>
+						<div class="home_search_content">
+							<form action="#" class="home_search_form" id="home_search_form">
+
+
+                                    <div class="container">
+                                        <div class='col-md-5'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='location'>
+                                                    <input type='text' class="form-control" placeholder="City" required="required" size="10"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-map-marker"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-5'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker6'>
+                                                    <input type='text' class="form-control" placeholder="Pick-Up" required="required" size="10"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md-5'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker7'>
+                                                    <input type='text' class="form-control" placeholder="Drop-Off" required="required" size="10"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript">
+                                        $(function () {
+                                            $('#datetimepicker6').datetimepicker();
+                                            $('#datetimepicker7').datetimepicker({
+                                                useCurrent: false //Important! See issue #1075
+                                            });
+                                            $("#datetimepicker6").on("dp.change", function (e) {
+                                                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+                                            });
+                                            $("#datetimepicker7").on("dp.change", function (e) {
+                                                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+                                            });
+                                        });
+                                    </script>
+
+
+									<button class="home_search_button">search</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+</body>
+</html>
+
